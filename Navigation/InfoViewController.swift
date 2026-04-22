@@ -34,24 +34,31 @@ class InfoViewController: UIViewController {
         view.backgroundColor = .systemGray2
         
         view.addSubview(alertButton)
-        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            alertButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            alertButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            alertButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            alertButton.heightAnchor.constraint(equalToConstant: 44)
-        ])
         alertButton.addTarget(self, action: #selector(alertButtonPressed), for: .touchUpInside)
         
         view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
+            //alertButton
+            alertButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            alertButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            alertButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
+            alertButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            //backButton
             backButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             backButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
             backButton.heightAnchor.constraint(equalToConstant: 44),
             backButton.topAnchor.constraint(equalTo: alertButton.bottomAnchor, constant: 100)
+        
         ])
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
     }
+    
     @objc func alertButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Alert", message: "Some message", preferredStyle: .alert)
         let action1 = UIAlertAction(title: "Action 1", style: .default) { _ in
