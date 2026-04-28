@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		80E5F0712F929AF600E79A15 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80E5F0712F929AF600E79A15 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Navigation.app; path = "/Users/nikitamorozov/Documents/ios/study/uikitNetology/Navigation1/build/Debug-iphoneos/Navigation.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -46,16 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				80E5F0732F929AF600E79A15 /* Navigation */,
-				80E5F0722F929AF600E79A15 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		80E5F0722F929AF600E79A15 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				80E5F0712F929AF600E79A15 /* Navigation.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,7 +99,7 @@
 			mainGroup = 80E5F0682F929AF600E79A15;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 80E5F0722F929AF600E79A15 /* Products */;
+			productRefGroup = 80E5F0682F929AF600E79A15;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
