@@ -20,6 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: scene)
         
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().tintColor = .systemBlue
+        
         let tabBarController = UITabBarController()
         
         let feedViewController = FeedViewController()
@@ -36,6 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tag: 1)
         
         tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
+        
         
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
