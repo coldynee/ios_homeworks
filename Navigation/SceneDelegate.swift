@@ -37,12 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             title: "Feed",
             image: UIImage(systemName: "house.fill"),
             tag: 0)
-//        let profileViewController = ProfileViewController()
-//        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-//        profileNavigationController.tabBarItem = UITabBarItem(
-//            title: "Profile",
-//            image: UIImage(systemName: "person.circle.fill"),
-//            tag: 1)
+
         
         let logInViewController = LogInViewController()
         let logInNavigationController = UINavigationController(rootViewController: logInViewController)
