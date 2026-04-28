@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
 
     private var statusText: String = ""
     
-    var avatarImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "avatar")
         imageView.contentMode = .scaleAspectFill
@@ -20,11 +20,10 @@ class ProfileHeaderView: UIView {
         imageView.layer.borderWidth = 3
         imageView.clipsToBounds = true
         
-        
         return imageView
     }()
     
-    var nameLabel = {
+    private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Thorffin"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -34,7 +33,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    var statusLabel = {
+    private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Waiting for something..."
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -44,7 +43,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    var showStatusButton = {
+    private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -59,7 +58,7 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    var statusTextField = {
+    private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Input new status"
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -77,7 +76,7 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        backgroundColor = .lightGray
         setupUI()
         setupTargets()
     }
@@ -88,66 +87,67 @@ class ProfileHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
     }
     
     private func setupUI() {
         addSubview(avatarImageView)
-        addSubview(nameLabel)
+        addSubview(fullNameLabel)
         addSubview(statusLabel)
-        addSubview(showStatusButton)
+        addSubview(setStatusButton)
         addSubview(statusTextField)
         
         setupConstraints()
     }
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
+            // avatarImageView
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             avatarImageView.heightAnchor.constraint(equalToConstant: 100),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100)
-        ])
-        NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 30),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
-        ])
-        NSLayoutConstraint.activate([
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            
+            // fullNameLabel
+            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 30),
+            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        
+            // statusLabel
             statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -5),
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 30),
-            statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
-        ])
-        NSLayoutConstraint.activate([
-            showStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 40),
-            showStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            showStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        NSLayoutConstraint.activate([
-            statusTextField.bottomAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: -16),
+            statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        
+            // setStatusButton
+            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 40),
+            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            // statusTextField
+            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -16),
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 30),
             statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
     private func setupTargets() {
-        showStatusButton.addTarget(self, action: #selector(showStatusButtonTapped), for: .touchUpInside)
+        setStatusButton.addTarget(self, action: #selector(showStatusButtonTapped), for: .touchUpInside)
         statusTextField.addTarget(self, action: #selector(statusTextFieldChanged), for: .editingChanged)
     }
     
     @objc func showStatusButtonTapped(_ sender: UIButton) {
         if !statusText.isEmpty {
             statusLabel.text = statusText
-            showStatusButton.setTitle("Show status", for: .normal)
+            setStatusButton.setTitle("Show status", for: .normal)
             statusTextField.text = ""
         }
         print("Current status is - \(statusLabel.text ?? "")")
-        
     }
     
     @objc func statusTextFieldChanged(_ textField: UITextField) {
         statusText = textField.text ?? ""
-        showStatusButton.setTitle("Set status", for: .normal)
+        setStatusButton.setTitle("Set status", for: .normal)
     }
 }
