@@ -52,10 +52,13 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         title = "Feed"
         
+        setupUI()
+    }
+    
+    private func setupUI() {
         view.addSubview(stackView)
         setupConstraints()
     }
-    
     private func setupConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([

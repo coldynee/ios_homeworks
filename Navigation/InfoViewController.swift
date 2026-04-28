@@ -33,14 +33,17 @@ class InfoViewController: UIViewController {
         title = "Info"
         view.backgroundColor = .systemGray2
         
+        setupUI()
+    }
+    
+    private func setupUI() {
         view.addSubview(alertButton)
         alertButton.addTarget(self, action: #selector(alertButtonPressed), for: .touchUpInside)
-        
+                
         view.addSubview(backButton)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         setupConstraints()
     }
-    
     private func setupConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([

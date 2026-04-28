@@ -25,11 +25,14 @@ class ProfileViewController: UIViewController {
         title = "Profile"
         view.backgroundColor = .systemGray6
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        setupUI()
+    }
+    
+    private func setupUI() {
         view.addSubview(profileHeaderView)
         view.addSubview(button)
         setupConstraints()
     }
-    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             //profileHeaderView
