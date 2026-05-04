@@ -71,12 +71,7 @@ class FeedViewController: UIViewController {
     
     @objc func postButtonPressed(_ sender: UIButton) {
         let postViewController = PostViewController()
-        postViewController.post = randomPost()
         navigationController?.pushViewController(postViewController, animated: true)
     }
 
-    func randomPost() -> Post {
-        let randomNumber = Int.random(in: 1...100)
-        return Post(title: "Post №\(randomNumber)")
-    }
 }
