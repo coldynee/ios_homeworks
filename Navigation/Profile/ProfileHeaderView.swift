@@ -21,7 +21,6 @@ class ProfileHeaderView: UIView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "avatar")
         imageView.contentMode = .scaleAspectFill
-        //imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
         imageView.clipsToBounds = true
@@ -38,7 +37,6 @@ class ProfileHeaderView: UIView {
         label.text = "Thorffin"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
-        //label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -48,7 +46,6 @@ class ProfileHeaderView: UIView {
         label.text = "Waiting for something..."
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
-        //label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
     }()
@@ -63,7 +60,6 @@ class ProfileHeaderView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        //button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
@@ -79,7 +75,6 @@ class ProfileHeaderView: UIView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 12
         textField.clipsToBounds = true
-        //textField.translatesAutoresizingMaskIntoConstraints = false
 
         return textField
     }()
