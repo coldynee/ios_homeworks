@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		804FC5602FCB6C90004BADE2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 804FC55F2FCB6C90004BADE2 /* SnapKit */; };
+		804FC5632FCB6EBF004BADE2 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 804FC5622FCB6EBF004BADE2 /* iOSIntPackage */; };
 		805DE5602FCAF57F00BCD31C /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805DE5582FCAF57F00BCD31C /* StorageService.framework */; };
 		805DE5612FCAF57F00BCD31C /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 805DE5582FCAF57F00BCD31C /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -78,7 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				804FC5632FCB6EBF004BADE2 /* iOSIntPackage in Frameworks */,
 				805DE5602FCAF57F00BCD31C /* StorageService.framework in Frameworks */,
+				804FC5602FCB6C90004BADE2 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +154,8 @@
 			);
 			name = Navigation;
 			packageProductDependencies = (
+				804FC55F2FCB6C90004BADE2 /* SnapKit */,
+				804FC5622FCB6EBF004BADE2 /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = 80E5F1D72FA0C15F00E79A15 /* Navigation.app */;
@@ -182,6 +188,10 @@
 			);
 			mainGroup = 80E5F0682F929AF600E79A15;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				804FC55E2FCB6C90004BADE2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				804FC5612FCB6EBF004BADE2 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 80E5F0682F929AF600E79A15;
 			projectDirPath = "";
@@ -250,6 +260,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -288,6 +299,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,6 +339,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -360,6 +373,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -529,6 +543,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		804FC55E2FCB6C90004BADE2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		804FC5612FCB6EBF004BADE2 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		804FC55F2FCB6C90004BADE2 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 804FC55E2FCB6C90004BADE2 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		804FC5622FCB6EBF004BADE2 /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 804FC5612FCB6EBF004BADE2 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			productName = iOSIntPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 80E5F0692F929AF600E79A15 /* Project object */;
 }

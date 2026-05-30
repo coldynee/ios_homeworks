@@ -7,10 +7,13 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
 
     static var identifier: String {"\(Self.self)"}
+    
+    private let imageProcessor = ImageProcessor()
     
     private let authorLabel: UILabel = {
         let label = UILabel()
@@ -112,5 +115,20 @@ class PostTableViewCell: UITableViewCell {
         postImageView.image = UIImage(named: post.image)
         likesLabel.text = "Likes: \(String(post.likes))"
         viewsLabel.text = "Views: \(String(post.views))"
+        
+        if let originalImage = UIImage(named: post.image) {
+            applyFilter(to: originalImage)
+        }
+        
+    }
+    
+    private func applyFilter(to image: UIImage) {
+        imageProcessor.processImageAsync(sourceImage: image, filter: .gaussianBlur(radius: 0.5)) { [weak self] processedCGImage in
+            guard let self = self, let processedCGImage = processedCGImage else { return }
+            let filteredImage = UIImage(cgImage: processedCGImage)
+            DispatchQueue.main.async {
+                self.postImageView.image = filteredImage
+            }
+        }
     }
 }
