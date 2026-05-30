@@ -23,7 +23,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         title = "Profile"
-        view.backgroundColor = .systemGray6
         
         setupTableView()
         setupHeaderView()
@@ -31,6 +30,14 @@ class ProfileViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(postsTableView)
+        
+        #if DEBUG
+                postsTableView.backgroundColor = .systemGray6
+                print("DEBUG MODE ACTIVE - Background: systemGray6")
+        #else
+                postsTableView.backgroundColor = .systemGreen
+                print("RELEASE MODE ACTIVE - Background: systemGreen")
+        #endif
         
         NSLayoutConstraint.activate([
             postsTableView.topAnchor.constraint(equalTo: view.topAnchor),
