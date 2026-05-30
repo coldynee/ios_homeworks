@@ -9,42 +9,69 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    let postButton = {
+    private lazy var postButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Open post", for: .normal)
         button.setTitleColor(.darkText, for: .normal)
-        
+        button.backgroundColor = .systemBlue
+        button.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
+
         return button
-        
     }()
+    
+    private lazy var secondPostButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Open post", for: .normal)
+        button.setTitleColor(.darkText, for: .normal)
+        button.backgroundColor = .systemCyan
+        button.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
+
+        return button
+    }()
+    
+    private lazy var stackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.clipsToBounds = true
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.spacing = 10
+        
+        stackView.addArrangedSubview(postButton)
+        stackView.addArrangedSubview(secondPostButton)
+        
+        return stackView
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Feed"
         
-        view.addSubview(postButton)
-        
+        setupUI()
+    }
+    
+    private func setupUI() {
+        view.addSubview(stackView)
+        setupConstraints()
+    }
+    private func setupConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            postButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 20),
-            postButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: -20),
-            postButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            postButton.heightAnchor.constraint(equalToConstant: 44.0)
+            stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
         ])
-        
-        postButton.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
-        
     }
     
     @objc func postButtonPressed(_ sender: UIButton) {
         let postViewController = PostViewController()
-        postViewController.post = randomPost()
         navigationController?.pushViewController(postViewController, animated: true)
     }
 
-    func randomPost() -> Post {
-        let randomNumber = Int.random(in: 0...10)
-        return Post(title: "Post №\(randomNumber)")
-    }
 }

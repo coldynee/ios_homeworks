@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class PostViewController: UIViewController {
 
@@ -14,7 +15,7 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = post?.title ?? "Post"
+        title = "Post"
         
         view.backgroundColor = .systemGray
         
