@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    private var user: User?
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,13 +96,13 @@ class LogInViewController: UIViewController {
         setupUI()
         setupTargets()
         setupHideKeyboardOnTap()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setupKeyboardObservers()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -170,6 +172,23 @@ class LogInViewController: UIViewController {
         logInButton.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         updateButtonState(isEnabled: false)
     }
+    private func getUser() -> User? {
+        let avatar = UIImage(named: "bmw") ?? UIImage()
+        let testUser = User(
+            login: "nikita",
+            fullName: "Nikita Morozov",
+            avatar: avatar,
+            status: "Hello world!"
+        )
+        guard let login = loginTextField.text, !login.isEmpty else { return nil }
+        #if DEBUG
+            let userService = TestUserService()
+            return userService.getUserInfo(by: login)
+        #else
+            let userService = CurrentUserService(currentUser: testUser)
+            return userService.getUserInfo(by: login)
+        #endif
+    }
     
     @objc private func textFieldDidChange() {
         let loginTextFieldFilled = !(loginTextField.text?.isEmpty ?? true)
@@ -201,10 +220,25 @@ class LogInViewController: UIViewController {
     }
     
     private func pushToProfile() {
-        let profileViewContoller = ProfileViewController()
+        guard let user = getUser() else {
+            showInvalidLoginAlert()
+            return
+        }
+        let profileViewContoller = ProfileViewController(user: user)
         navigationController?.pushViewController(profileViewContoller, animated: true)
     
     }
+    
+    private func showInvalidLoginAlert() {
+        let alert = UIAlertController(
+            title: "Ошибка",
+            message: "Неверный логин",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
     @objc private func willShowKeyboard(_ notification: NSNotification) {
         let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
         scrollView.contentInset.bottom = keyboardHeight ?? 0.0

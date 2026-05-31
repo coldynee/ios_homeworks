@@ -83,6 +83,16 @@ class ProfileHeaderView: UIView {
         return textField
     }()
     
+    init(frame: CGRect, user: User) {
+        super.init(frame: frame)
+        backgroundColor = .lightGray
+        setupUI()
+        setupTargets()
+        avatarImageView.image = user.avatar
+        fullNameLabel.text = user.fullName
+        statusLabel.text = user.status
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .lightGray
@@ -92,6 +102,12 @@ class ProfileHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func setUser(_ user: User) {
+        avatarImageView.image = user.avatar
+        fullNameLabel.text = user.fullName
+        statusLabel.text = user.status
     }
     
     override func layoutSubviews() {

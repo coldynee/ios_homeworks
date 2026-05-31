@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    private let user: User
+    
     private lazy var postsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -19,11 +21,20 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Profile"
-        
+            
         setupTableView()
         setupHeaderView()
     }
@@ -32,11 +43,11 @@ class ProfileViewController: UIViewController {
         view.addSubview(postsTableView)
         
         #if DEBUG
-                postsTableView.backgroundColor = .systemGray6
-                print("DEBUG MODE ACTIVE - Background: systemGray6")
+            postsTableView.backgroundColor = .systemGreen
+            print("DEBUG MODE ACTIVE - Background: systemGreen")
         #else
-                postsTableView.backgroundColor = .systemGreen
-                print("RELEASE MODE ACTIVE - Background: systemGreen")
+            postsTableView.backgroundColor = .systemGray6
+            print("RELEASE MODE ACTIVE - Background: systemGray6")
         #endif
         
         NSLayoutConstraint.activate([
@@ -50,7 +61,11 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupHeaderView() {
+        
         let headerView = ProfileHeaderView()
+        
+        headerView.setUser(user)
+        
         headerView.translatesAutoresizingMaskIntoConstraints = true
         
         headerView.frame.size.width = postsTableView.bounds.width
