@@ -20,6 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: scene)
         
+        let factory = MyLoginFactory()
+        let loginInspector = factory.makeLoginInspector()
+        
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
@@ -37,15 +41,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             title: "Feed",
             image: UIImage(systemName: "house.fill"),
             tag: 0)
-
         
         let logInViewController = LogInViewController()
+        logInViewController.loginDelegate = loginInspector
+        
         let logInNavigationController = UINavigationController(rootViewController: logInViewController)
         logInNavigationController.tabBarItem = UITabBarItem(
             title: "Profile",
             image: UIImage(systemName: "person.circle.fill"),
             tag: 1)
         tabBarController.viewControllers = [feedNavigationController, logInNavigationController]
+        
+       
         
         
         window.rootViewController = tabBarController
