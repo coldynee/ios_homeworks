@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+    
+    var publisher: ImagePublisherFacade?
+    var images: [UIImage] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.photosCollectionView.reloadData()
+            }
+        }
+    }
     
     private lazy var photosCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -29,6 +39,7 @@ class PhotosViewController: UIViewController {
         view.backgroundColor = .white
         setupCollectionView()
         registerCells()
+        setupSubscription()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,6 +51,7 @@ class PhotosViewController: UIViewController {
         super.viewWillDisappear(animated)
             
         navigationController?.navigationBar.isHidden = true
+        removeSubscription()
     }
     private func setupCollectionView() {
         view.addSubview(photosCollectionView)
@@ -55,16 +67,25 @@ class PhotosViewController: UIViewController {
     private func registerCells() {
         photosCollectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
     }
+    
+    
+    
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath) as! PhotosCollectionViewCell
-        cell.configure(with: photos[indexPath.row])
+        
+        guard indexPath.row < images.count else {
+            return cell
+        }
+        
+        let image = images[indexPath.row]
+        cell.configure(with: image)
         return cell
     }
     
@@ -85,5 +106,37 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         8
+    }
+}
+
+extension PhotosViewController {
+    func receive(images: [UIImage]) {
+        self.images = images
+        photosCollectionView.reloadData()
+    }
+}
+
+extension PhotosViewController {
+    
+    private func setupSubscription() {
+        let publisher = ImagePublisherFacade()
+        self.publisher = publisher
+        publisher.subscribe(self)
+        
+        var userImages: [UIImage] = []
+        
+        for name in photos {
+            if let image = UIImage(named: name) {
+                userImages.append(image)
+            }
+        }
+        
+        publisher.addImagesWithTimer(time: 0.5, repeat: 20, userImages: userImages)
+    }
+    
+    private func removeSubscription() {
+        guard let publisher = publisher else { return }
+        publisher.removeSubscription(for: self)
+        self.publisher = nil
     }
 }
