@@ -11,7 +11,7 @@ import UIKit
 class TestUserService: UserService {
     
     var testUser: User = User(
-        login: "test",
+        login: "nikita",
         fullName: "testing test",
         avatar: UIImage(named: "logo") ?? UIImage(),
         status: "test test test"

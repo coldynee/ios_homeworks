@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    var loginDelegate: LoginViewControllerDelegate?
+    
     private var user: User?
     
     private lazy var scrollView: UIScrollView = {
@@ -172,23 +174,6 @@ class LogInViewController: UIViewController {
         logInButton.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         updateButtonState(isEnabled: false)
     }
-    private func getUser() -> User? {
-        let avatar = UIImage(named: "bmw") ?? UIImage()
-        let testUser = User(
-            login: "nikita",
-            fullName: "Nikita Morozov",
-            avatar: avatar,
-            status: "Hello world!"
-        )
-        guard let login = loginTextField.text, !login.isEmpty else { return nil }
-        #if DEBUG
-            let userService = TestUserService()
-            return userService.getUserInfo(by: login)
-        #else
-            let userService = CurrentUserService(currentUser: testUser)
-            return userService.getUserInfo(by: login)
-        #endif
-    }
     
     @objc private func textFieldDidChange() {
         let loginTextFieldFilled = !(loginTextField.text?.isEmpty ?? true)
@@ -220,13 +205,50 @@ class LogInViewController: UIViewController {
     }
     
     private func pushToProfile() {
-        guard let user = getUser() else {
-            showInvalidLoginAlert()
+        
+        guard let login = loginTextField.text, !login.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            showAlert(message: "Заполните все поля")
             return
         }
+        
+        let isCredentialsValid = loginDelegate?.check(login: login, password: password) ?? false
+        
+        guard isCredentialsValid else {
+            showAlert(message: "Неверный логин или пароль")
+            return
+        }
+        
+        let userService = getUserService()
+        guard let user = userService.getUserInfo(by: login) else {
+            showAlert(message: "Пользователь не найден")
+            return
+        }
+        
         let profileViewContoller = ProfileViewController(user: user)
         navigationController?.pushViewController(profileViewContoller, animated: true)
     
+    }
+    
+    private func getUserService() -> UserService {
+        #if DEBUG
+        return TestUserService()
+        #else
+        let avatar = UIImage(named: "avatar") ?? UIImage()
+        let realUser = User(
+            login: "nikita",
+            fullName: "Nikita Morozov",
+            avatar: avatar,
+            status: "My status"
+        )
+        return CurrentUserService(currentUser: realUser)
+        #endif
+    }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
     
     private func showInvalidLoginAlert() {
