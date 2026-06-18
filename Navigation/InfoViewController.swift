@@ -9,21 +9,25 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-    let alertButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Alert", for: .normal)
-        button.setTitleColor(.red, for: .normal)
-        
+    private lazy var alertButton = {
+        let button = CustomButton(
+            title: "Alert",
+            titleColor: .red,
+            backgroundColor: .clear
+        ) { [weak self] in
+            self?.alertButtonPressed()
+        }
         return button
     }()
     
-    let backButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Back", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        
+    private lazy var backButton = {
+        let button = CustomButton(
+            title: "Back",
+            titleColor: .black,
+            backgroundColor: .clear
+        ) { [weak self] in
+            self?.backButtonPressed()
+        }
         return button
     }()
     
@@ -38,12 +42,10 @@ class InfoViewController: UIViewController {
     
     private func setupUI() {
         view.addSubview(alertButton)
-        alertButton.addTarget(self, action: #selector(alertButtonPressed), for: .touchUpInside)
-                
         view.addSubview(backButton)
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         setupConstraints()
     }
+    
     private func setupConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -62,7 +64,7 @@ class InfoViewController: UIViewController {
         ])
     }
     
-    @objc func alertButtonPressed(_ sender: UIButton) {
+    private func alertButtonPressed() {
         let alert = UIAlertController(title: "Alert", message: "Some message", preferredStyle: .alert)
         let action1 = UIAlertAction(title: "Action 1", style: .default) { _ in
             print("action 1 pressed")
@@ -77,7 +79,8 @@ class InfoViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true)
     }
-    @objc func backButtonPressed(_ sender: UIButton) {
+    
+    private func backButtonPressed() {
         dismiss(animated: true)
     }
 }

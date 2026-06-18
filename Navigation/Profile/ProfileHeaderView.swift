@@ -52,17 +52,15 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private lazy var setStatusButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Show status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var setStatusButton: CustomButton = {
+        let button = CustomButton(
+            title: "Show status",
+            titleColor: .white,
+            backgroundColor: .systemBlue,
+            cornerRadius: 12,
+        ) { [weak self] in
+            self?.setStatus()
+        }
         
         return button
     }()
@@ -159,17 +157,15 @@ class ProfileHeaderView: UIView {
     }
     
     private func setupTargets() {
-        setStatusButton.addTarget(self, action: #selector(showStatusButtonTapped), for: .touchUpInside)
         statusTextField.addTarget(self, action: #selector(statusTextFieldChanged), for: .editingChanged)
     }
     
-    @objc func showStatusButtonTapped(_ sender: UIButton) {
+    private func setStatus() {
         if !statusText.isEmpty {
             statusLabel.text = statusText
             setStatusButton.setTitle("Show status", for: .normal)
             statusTextField.text = ""
         }
-        print("Current status is - \(statusLabel.text ?? "")")
     }
     
     @objc func statusTextFieldChanged(_ textField: UITextField) {

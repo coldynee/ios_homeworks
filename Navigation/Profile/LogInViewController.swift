@@ -78,16 +78,18 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private lazy var logInButton: UIButton = {
-        let button = UIButton()
+    private lazy var logInButton: CustomButton = {
+        let button = CustomButton(
+            title: "Log in",
+            titleColor: .white,
+            backgroundColor: .systemBlue,
+            cornerRadius: 10,
+            
+        ) { [weak self] in
+            self?.pushToProfile()
+        }
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .highlighted)
-        button.setTitle("Log in", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return button
     }()
     
@@ -170,8 +172,6 @@ class LogInViewController: UIViewController {
     private func setupTargets() {
         loginTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        logInButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        logInButton.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         updateButtonState(isEnabled: false)
     }
     
@@ -188,20 +188,6 @@ class LogInViewController: UIViewController {
         UIView.animate(withDuration: 0.2) {
             self.logInButton.alpha = isEnabled ? 1.0 : 0.8
         }
-    }
-    
-    @objc private func buttonTouchDown(_ sender: UIButton) {
-        guard sender.isEnabled else { return }
-        UIView.animate(withDuration: 0.1) {
-            sender.alpha = 0.8
-        }
-    }
-    @objc private func buttonTouchUp(_ sender: UIButton) {
-        guard sender.isEnabled else { return }
-        UIView.animate(withDuration: 0.1) {
-            sender.alpha = 1.0
-        }
-        pushToProfile()
     }
     
     private func pushToProfile() {
