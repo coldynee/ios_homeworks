@@ -10,6 +10,7 @@ import UIKit
 class ProfileHeaderView: UIView {
 
     private var statusText: String = ""
+    private var viewModel: ProfileViewModelProtocol?
     
     private var avatarOriginalFrame = CGRect.zero
     private var avatarBackground: UIView?
@@ -98,6 +99,21 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with viewModel: ProfileViewModelProtocol) {
+        self.viewModel = viewModel
+        updateUI()
+        viewModel.onStatusUpdated = { [weak self] newStatus in
+            self?.statusLabel.text = newStatus
+        }
+    }
+    
+    private func updateUI() {
+        guard let viewModel = viewModel else { return }
+        avatarImageView.image = viewModel.userAvatar
+        fullNameLabel.text = viewModel.userName
+        statusLabel.text = viewModel.userStatus
+    }
+    
     public func setUser(_ user: User) {
         avatarImageView.image = user.avatar
         fullNameLabel.text = user.fullName
@@ -157,11 +173,10 @@ class ProfileHeaderView: UIView {
     }
     
     private func setStatus() {
-        if !statusText.isEmpty {
-            statusLabel.text = statusText
-            setStatusButton.setTitle("Show status", for: .normal)
-            statusTextField.text = ""
-        }
+        guard !statusText.isEmpty else { return }
+        viewModel?.updateStatus(statusText)
+        setStatusButton.setTitle("Show status", for: .normal)
+        statusTextField.text = ""
     }
     
     @objc func statusTextFieldChanged(_ textField: UITextField) {

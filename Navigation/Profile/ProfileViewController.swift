@@ -8,8 +8,9 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
-    private let user: User
+    
+    private let viewModel: ProfileViewModelProtocol
+    private var headerView: ProfileHeaderView?
     
     private lazy var postsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -21,8 +22,8 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    init(user: User) {
-        self.user = user
+    init(viewModel: ProfileViewModelProtocol) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,11 +33,32 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "Profile"
-            
+        
         setupTableView()
         setupHeaderView()
+        bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        viewModel.onDataUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.postsTableView.reloadData()
+            }
+        }
+        
+        viewModel.onError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                let alert = UIAlertController(
+                    title: "Ошибка",
+                    message: errorMessage,
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self?.present(alert, animated: true)
+            }
+        }
     }
     
     private func setupTableView() {
@@ -64,7 +86,7 @@ class ProfileViewController: UIViewController {
         
         let headerView = ProfileHeaderView()
         
-        headerView.setUser(user)
+        headerView.configure(with: viewModel)
         
         headerView.translatesAutoresizingMaskIntoConstraints = true
         
@@ -75,7 +97,8 @@ class ProfileViewController: UIViewController {
         let size = headerView.systemLayoutSizeFitting(CGSize(width: postsTableView.bounds.width, height: UIView.layoutFittingCompressedSize.height))
         headerView.frame.size.height = size.height
         postsTableView.tableHeaderView = headerView
-    
+        
+        self.headerView = headerView
     }
 }
 
@@ -84,7 +107,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
-            return posts.count
+            return viewModel.posts.count
         }
     }
     
@@ -99,7 +122,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell else {
                 return UITableViewCell()
             }
-            let post = posts[indexPath.row]
+            let post = viewModel.posts[indexPath.row]
             cell.configure(with: post)
             cell.selectionStyle = .none
             

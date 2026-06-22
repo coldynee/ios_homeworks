@@ -9,6 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
+    weak var coordinator: FeedCoordinator?
     private let feedModel = FeedModel()
     
     private lazy var postButton = CustomButton(
@@ -106,8 +107,7 @@ class FeedViewController: UIViewController {
     }
     
     private func postButtonPressed() {
-        let postViewController = PostViewController()
-        navigationController?.pushViewController(postViewController, animated: true)
+        coordinator?.showPost()
     }
     
     private func checkGuess() {

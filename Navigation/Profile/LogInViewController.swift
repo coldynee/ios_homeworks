@@ -9,6 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    weak var coordinator: ProfileCoordinator?
     var loginDelegate: LoginViewControllerDelegate?
     
     private var user: User?
@@ -208,9 +209,7 @@ class LogInViewController: UIViewController {
             return
         }
         
-        let profileViewContoller = ProfileViewController(user: user)
-        navigationController?.pushViewController(profileViewContoller, animated: true)
-    
+        coordinator?.showProfile(with: user)
     }
     
     private func getUserService() -> UserService {
