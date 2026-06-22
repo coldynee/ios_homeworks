@@ -52,8 +52,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private lazy var setStatusButton: CustomButton = {
-        let button = CustomButton(
+    private lazy var setStatusButton = CustomButton(
             title: "Show status",
             titleColor: .white,
             backgroundColor: .systemBlue,
@@ -61,9 +60,6 @@ class ProfileHeaderView: UIView {
         ) { [weak self] in
             self?.setStatus()
         }
-        
-        return button
-    }()
     
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
