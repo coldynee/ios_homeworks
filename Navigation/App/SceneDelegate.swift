@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var appCoordinator: AppCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -20,9 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: scene)
         
-        let factory = MyLoginFactory()
-        let loginInspector = factory.makeLoginInspector()
+        let rootNavigationController = UINavigationController()
+        rootNavigationController.isNavigationBarHidden = true
         
+        let appCoordinator = AppCoordinator(navigationController: rootNavigationController)
+        self.appCoordinator = appCoordinator
+        appCoordinator.start()
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -33,29 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().tintColor = .systemBlue
         
-        let tabBarController = UITabBarController()
-        
-        let feedViewController = FeedViewController()
-        let feedNavigationController = UINavigationController(rootViewController: feedViewController)
-        feedNavigationController.tabBarItem = UITabBarItem(
-            title: "Feed",
-            image: UIImage(systemName: "house.fill"),
-            tag: 0)
-        
-        let logInViewController = LogInViewController()
-        logInViewController.loginDelegate = loginInspector
-        
-        let logInNavigationController = UINavigationController(rootViewController: logInViewController)
-        logInNavigationController.tabBarItem = UITabBarItem(
-            title: "Profile",
-            image: UIImage(systemName: "person.circle.fill"),
-            tag: 1)
-        tabBarController.viewControllers = [feedNavigationController, logInNavigationController]
-        
-       
-        
-        
-        window.rootViewController = tabBarController
+        window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
         self.window = window
         

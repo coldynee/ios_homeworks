@@ -9,27 +9,21 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-    private lazy var alertButton = {
-        let button = CustomButton(
+    private lazy var alertButton = CustomButton(
             title: "Alert",
             titleColor: .red,
             backgroundColor: .clear
         ) { [weak self] in
             self?.alertButtonPressed()
         }
-        return button
-    }()
     
-    private lazy var backButton = {
-        let button = CustomButton(
+    private lazy var backButton = CustomButton(
             title: "Back",
             titleColor: .black,
             backgroundColor: .clear
         ) { [weak self] in
             self?.backButtonPressed()
         }
-        return button
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,6 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    weak var coordinator: ProfileCoordinator?
     var loginDelegate: LoginViewControllerDelegate?
     
     private var user: User?
@@ -78,8 +79,7 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private lazy var logInButton: CustomButton = {
-        let button = CustomButton(
+    private lazy var logInButton = CustomButton(
             title: "Log in",
             titleColor: .white,
             backgroundColor: .systemBlue,
@@ -88,10 +88,7 @@ class LogInViewController: UIViewController {
         ) { [weak self] in
             self?.pushToProfile()
         }
-        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         
-        return button
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +114,7 @@ class LogInViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
+        logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         view.addSubview(scrollView)
         contentView.addSubview(logoImageView)
         contentView.addSubview(loginTextField)
@@ -211,9 +209,7 @@ class LogInViewController: UIViewController {
             return
         }
         
-        let profileViewContoller = ProfileViewController(user: user)
-        navigationController?.pushViewController(profileViewContoller, animated: true)
-    
+        coordinator?.showProfile(with: user)
     }
     
     private func getUserService() -> UserService {

@@ -9,10 +9,10 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
+    weak var coordinator: FeedCoordinator?
     private let feedModel = FeedModel()
     
-    private lazy var postButton = {
-        let button = CustomButton(
+    private lazy var postButton = CustomButton(
             title: "Open post",
             titleColor: .darkText,
             backgroundColor: .systemBlue,
@@ -20,12 +20,8 @@ class FeedViewController: UIViewController {
         ) { [weak self] in
             self?.postButtonPressed()
         }
-        
-        return button
-    }()
     
-    private lazy var secondPostButton = {
-        let button = CustomButton(
+    private lazy var secondPostButton = CustomButton(
             title: "Open post",
             titleColor: .darkText,
             backgroundColor: .systemCyan,
@@ -33,9 +29,6 @@ class FeedViewController: UIViewController {
         ) { [weak self] in
             self?.postButtonPressed()
         }
-        
-        return button
-    }()
     
     private lazy var checkGuessTextField = {
         let textField = UITextField()
@@ -114,8 +107,7 @@ class FeedViewController: UIViewController {
     }
     
     private func postButtonPressed() {
-        let postViewController = PostViewController()
-        navigationController?.pushViewController(postViewController, animated: true)
+        coordinator?.showPost()
     }
     
     private func checkGuess() {
