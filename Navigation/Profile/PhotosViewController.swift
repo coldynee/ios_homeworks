@@ -161,28 +161,6 @@ extension PhotosViewController {
             self.processImagesWithFilter(filter: .sepia(intensity: 50), qos: .background)
         }
     }
-    
-//    private func setupSubscription() {
-//        let publisher = ImagePublisherFacade()
-//        self.publisher = publisher
-//        publisher.subscribe(self)
-//        
-//        var userImages: [UIImage] = []
-//        
-//        for name in photos {
-//            if let image = UIImage(named: name) {
-//                userImages.append(image)
-//            }
-//        }
-//        
-//        publisher.addImagesWithTimer(time: 0.5, repeat: 20, userImages: userImages)
-//    }
-//    
-//    private func removeSubscription() {
-//        guard let publisher = publisher else { return }
-//        publisher.removeSubscription(for: self)
-//        self.publisher = nil
-//    }
 }
 
 extension QualityOfService {
