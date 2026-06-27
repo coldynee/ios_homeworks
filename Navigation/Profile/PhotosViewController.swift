@@ -8,13 +8,14 @@
 import UIKit
 import iOSIntPackage
 
-class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+class PhotosViewController: UIViewController {
     
-    var publisher: ImagePublisherFacade?
-    var images: [UIImage] = [] {
+    private let imageProcessor = ImageProcessor()
+    private var originalImages: [UIImage] = []
+    private var processedImages: [UIImage] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.photosCollectionView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.photosCollectionView.reloadData()
             }
         }
     }
@@ -28,6 +29,7 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
         
         return collectionView
     }()
@@ -38,8 +40,7 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         title = "Photo Gallery"
         view.backgroundColor = .white
         setupCollectionView()
-        registerCells()
-        setupSubscription()
+        loadImages()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,7 +52,6 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         super.viewWillDisappear(animated)
             
         navigationController?.navigationBar.isHidden = true
-        removeSubscription()
     }
     private func setupCollectionView() {
         view.addSubview(photosCollectionView)
@@ -63,28 +63,36 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
             photosCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-
-    private func registerCells() {
-        photosCollectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
+    
+    private func loadImages() {
+        for name in photos {
+            if let image = UIImage(named: name) {
+                originalImages.append(image)
+            }
+        }
+        
+        processedImages = originalImages
+        photosCollectionView.reloadData()
+        
+        processImagesWithFilter()
+        runExperiments()
     }
-    
-    
     
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return processedImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath) as! PhotosCollectionViewCell
         
-        guard indexPath.row < images.count else {
+        guard indexPath.row < processedImages.count else {
             return cell
         }
         
-        let image = images[indexPath.row]
+        let image = processedImages[indexPath.row]
         cell.configure(with: image)
         return cell
     }
@@ -110,33 +118,60 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension PhotosViewController {
-    func receive(images: [UIImage]) {
-        self.images = images
-        photosCollectionView.reloadData()
+    
+    private func processImagesWithFilter(
+        filter: ColorFilter = .sepia(intensity: 50),
+        qos: QualityOfService = .userInitiated
+    ) {
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
+        imageProcessor.processImagesOnThread(
+            sourceImages: originalImages,
+            filter: filter,
+            qos: qos,
+        ) { [weak self] processedCGImages in
+            guard let self = self else { return }
+            var newImages: [UIImage] = []
+            for cgImage in processedCGImages {
+                if let cgImage = cgImage {
+                    newImages.append(UIImage(cgImage: cgImage))
+                }
+            }
+            self.processedImages = newImages
+            let endTime = CFAbsoluteTimeGetCurrent()
+            let duration = endTime - startTime
+            print("images count: \(self.originalImages.count), filter: \(filter), qos: \(qos.name), completion time: \(String(format: "%.4f", duration)) sec")
+        }
+    }
+    
+    private func runExperiments() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.processImagesWithFilter(filter: .sepia(intensity: 50), qos: .userInteractive)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.processImagesWithFilter(filter: .sepia(intensity: 50), qos: .userInitiated)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
+            self.processImagesWithFilter(filter: .sepia(intensity: 50), qos: .default)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.processImagesWithFilter(filter: .sepia(intensity: 50), qos: .utility)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6.5) {
+            self.processImagesWithFilter(filter: .sepia(intensity: 50), qos: .background)
+        }
     }
 }
 
-extension PhotosViewController {
-    
-    private func setupSubscription() {
-        let publisher = ImagePublisherFacade()
-        self.publisher = publisher
-        publisher.subscribe(self)
-        
-        var userImages: [UIImage] = []
-        
-        for name in photos {
-            if let image = UIImage(named: name) {
-                userImages.append(image)
-            }
+extension QualityOfService {
+    var name: String {
+        switch self {
+        case .userInteractive: return ".userInteractive (высший)"
+        case .userInitiated: return ".userInitiated"
+        case .default: return ".default"
+        case .utility: return ".utility"
+        case .background: return ".background (низший)"
+        @unknown default: return ".unknown"
         }
-        
-        publisher.addImagesWithTimer(time: 0.5, repeat: 20, userImages: userImages)
-    }
-    
-    private func removeSubscription() {
-        guard let publisher = publisher else { return }
-        publisher.removeSubscription(for: self)
-        self.publisher = nil
     }
 }
