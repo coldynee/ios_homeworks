@@ -19,8 +19,10 @@ protocol ProfileViewModelProtocol: AnyObject {
     
     func updateStatus(_ newStatus: String)
     func loadPosts() -> [Post]
+    func generateStatus()
     
     var onDataUpdated: (() -> Void)? { get set }
     var onStatusUpdated: ((String) -> Void)? { get set }
     var onError: ((String) -> Void)? { get set }
+    var onCountdownTick: ((Int) -> Void)? { get set }
 }

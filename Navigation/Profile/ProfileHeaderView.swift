@@ -105,6 +105,11 @@ class ProfileHeaderView: UIView {
         viewModel.onStatusUpdated = { [weak self] newStatus in
             self?.statusLabel.text = newStatus
         }
+        viewModel.onCountdownTick = { [weak self] count in
+            if count > 0 {
+                self?.statusLabel.text = "Generating... \(count)"
+            }
+        }
     }
     
     private func updateUI() {
@@ -173,9 +178,12 @@ class ProfileHeaderView: UIView {
     }
     
     private func setStatus() {
-        guard !statusText.isEmpty else { return }
+        guard !statusText.isEmpty else {
+            viewModel?.generateStatus()
+            return
+        }
         viewModel?.updateStatus(statusText)
-        setStatusButton.setTitle("Show status", for: .normal)
+        setStatusButton.setTitle("Generate status", for: .normal)
         statusTextField.text = ""
     }
     
