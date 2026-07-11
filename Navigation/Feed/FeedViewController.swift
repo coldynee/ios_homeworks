@@ -10,7 +10,7 @@ import UIKit
 class FeedViewController: UIViewController {
     
     weak var coordinator: FeedCoordinator?
-    private let feedModel = FeedModel()
+    private let viewModel = FeedViewModel()
     
     private lazy var postButton = CustomButton(
             title: "Open post",
@@ -84,8 +84,7 @@ class FeedViewController: UIViewController {
         title = "Feed"
         
         setupUI()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handleGuessResult), name: NSNotification.Name("GuessResult"), object: nil)
+        setupBindings()
     }
     
     deinit {
@@ -106,6 +105,16 @@ class FeedViewController: UIViewController {
         ])
     }
     
+    private func setupBindings() {
+        viewModel.onSuccess = { [weak self] message in
+            self?.guessLabel.text = message
+            self?.guessLabel.textColor = .green
+        }
+        viewModel.onError = { [weak self] error in
+            self?.showError(error)
+        }
+    }
+    
     private func postButtonPressed() {
         coordinator?.showPost()
     }
@@ -117,7 +126,12 @@ class FeedViewController: UIViewController {
             return
         }
         
-        _ = feedModel.check(checkWord)
+        viewModel.check(checkWord)
+    }
+    
+    private func showError(_ error: GuessError) {
+        guessLabel.text = error.errorDescription
+        guessLabel.textColor = .red
     }
     @objc private func handleGuessResult(_ notification: NSNotification) {
         guard let isCorrect = notification.userInfo?["isCorrect"] as? Bool else { return }

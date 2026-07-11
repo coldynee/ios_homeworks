@@ -196,21 +196,31 @@ class LogInViewController: UIViewController {
             return
         }
         
-        let isCredentialsValid = loginDelegate?.check(login: login, password: password) ?? false
-        
-        guard isCredentialsValid else {
-            showAlert(message: "Неверный логин или пароль")
-            return
+        do {
+            let isValid = try loginDelegate?.check(login: login, password: password) ?? false
+            if isValid {
+                let userService = getUserService()
+                guard let user = userService.getUserInfo(by: login) else {
+                    throw LoginError.userNotFound
+                }
+                coordinator?.showProfile(with: user)
+            } else {
+                throw LoginError.invalidLogin
+            }
+        } catch let error as LoginError {
+            showLoginError(error: error)
+        } catch {
+            showAlert(message: error.localizedDescription)
         }
         
-        let userService = getUserService()
-        guard let user = userService.getUserInfo(by: login) else {
-            showAlert(message: "Пользователь не найден")
-            return
-        }
-        
-        coordinator?.showProfile(with: user)
     }
+    
+    private func showLoginError(error: LoginError) {
+        let alert = UIAlertController(title: error.alertTitle, message: error.errorDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+
     
     private func getUserService() -> UserService {
         #if DEBUG
