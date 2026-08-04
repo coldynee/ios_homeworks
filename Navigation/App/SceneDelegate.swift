@@ -23,6 +23,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appConfiguraion = AppConfiguration.allCases.randomElement() ?? .first
         NetworkService.request(for: appConfiguraion)
         
+        DispatchQueue.global(qos: .background).async {
+            guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos/") else { return }
+            guard let data = try? Data(contentsOf: url) else { return }
+            DispatchQueue.main.async {
+                if let users = NetworkService.request2_1(data: data) {
+                    print("get \(users.count) items")
+                    print("first title: \(users.first?.title ?? "nil")")
+                } else {
+                    print("no data")
+                }
+            }
+        }
+        
         let rootNavigationController = UINavigationController()
         rootNavigationController.isNavigationBarHidden = true
         
