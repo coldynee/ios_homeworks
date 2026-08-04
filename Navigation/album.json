@@ -1,0 +1,1375 @@
+{
+  "invocationInfo": {
+    "req-id": "1785813168670321-8341199672716698515",
+    "hostname": "music-web-default-production-music-95.vla.yp-c.yandex.net",
+    "exec-duration-millis": 3
+  },
+  "result": {
+    "id": 22012,
+    "title": "Around the Fur",
+    "metaType": "music",
+    "contentWarning": "explicit",
+    "year": 1997,
+    "releaseDate": "1997-10-27T00:00:00+03:00",
+    "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+    "cover": {
+      "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+      "color": "#272828"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+    "genre": "alternativemetal",
+    "metaTagId": "6194f3488c62d762f1fc3d4b",
+    "trackCount": 10,
+    "likesCount": 30551,
+    "recent": false,
+    "veryImportant": false,
+    "artists": [
+      {
+        "id": 48770,
+        "name": "Deftones",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+          "type": "from-artist-photos",
+          "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+          "prefix": "9c0574a5.p.48770/"
+        },
+        "genres": [],
+        "disclaimers": []
+      }
+    ],
+    "labels": [
+      {
+        "id": 445619,
+        "name": "Maverick Recording Company"
+      }
+    ],
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableForOptions": [
+      "bookmate"
+    ],
+    "availableForMobile": true,
+    "availablePartially": false,
+    "bests": [215846, 215845],
+    "disclaimers": [
+      "explicit",
+      "exclamationIcon:671a23afcec5646906723a52",
+      "descriptionText:67370c8e13b92b0a60256675"
+    ],
+    "hasTrailer": true,
+    "trailer": {
+      "available": true
+    },
+    "derivedColors": {
+      "average": "#272828",
+      "waveText": "#e0e0e0",
+      "miniPlayer": "#b6b8b8",
+      "accent": "#979a9a"
+    },
+    "customWave": {
+      "title": "Around the Fur",
+      "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+      "header": "My Vibe by album",
+      "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-album-background.image/%%"
+    },
+    "sortOrder": "asc",
+    "volumes": [
+      [
+        {
+          "id": "215845",
+          "realId": "215845",
+          "title": "My Own Summer (Shove It)",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [],
+          "storageDir": "",
+          "durationMs": 215420,
+          "fileSize": 0,
+          "r128": {
+            "i": -7.75,
+            "tp": 1.26
+          },
+          "fade": {
+            "inStart": 0.5,
+            "inStop": 1.5,
+            "outStart": 213.9,
+            "outStop": 215.1
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 1
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": true,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": false,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215850",
+          "realId": "215850",
+          "title": "Lhabia",
+          "contentWarning": "explicit",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [
+            "explicit",
+            "exclamationIcon:671a23afcec5646906723a52",
+            "descriptionText:67370c8e13b92b0a60256675"
+          ],
+          "storageDir": "",
+          "durationMs": 251170,
+          "fileSize": 0,
+          "r128": {
+            "i": -7.78,
+            "tp": 0.94
+          },
+          "fade": {
+            "inStart": 0.1,
+            "inStop": 1.5,
+            "outStart": 244.7,
+            "outStop": 249.7
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 2
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": false,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": false,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215848",
+          "realId": "215848",
+          "title": "Mascara",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [],
+          "storageDir": "",
+          "durationMs": 225290,
+          "fileSize": 0,
+          "r128": {
+            "i": -11.13,
+            "tp": 0.76
+          },
+          "fade": {
+            "inStart": 0,
+            "inStop": 1.9,
+            "outStart": 223.7,
+            "outStop": 225.1
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 3
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": false,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": true,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215852",
+          "realId": "215852",
+          "title": "Around the Fur",
+          "contentWarning": "explicit",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [
+            "explicit",
+            "exclamationIcon:671a23afcec5646906723a52",
+            "descriptionText:67370c8e13b92b0a60256675"
+          ],
+          "storageDir": "",
+          "durationMs": 211730,
+          "fileSize": 0,
+          "r128": {
+            "i": -8.25,
+            "tp": 1.05
+          },
+          "fade": {
+            "inStart": 0,
+            "inStop": 1.5,
+            "outStart": 209,
+            "outStop": 211.7
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 4
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": false,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": true,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215847",
+          "realId": "215847",
+          "title": "Rickets",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [],
+          "storageDir": "",
+          "durationMs": 162800,
+          "fileSize": 0,
+          "r128": {
+            "i": -8.72,
+            "tp": 1.84
+          },
+          "fade": {
+            "inStart": 0,
+            "inStop": 1.5,
+            "outStart": 160.5,
+            "outStop": 162.8
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 5
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": false,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": true,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215846",
+          "realId": "215846",
+          "title": "Be Quiet and Drive (Far Away)",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [],
+          "storageDir": "",
+          "durationMs": 308130,
+          "fileSize": 0,
+          "r128": {
+            "i": -7.63,
+            "tp": 1.19
+          },
+          "fade": {
+            "inStart": 0,
+            "inStop": 1.5,
+            "outStart": 299.4,
+            "outStop": 304.4
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 6
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": true,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": false,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215853",
+          "realId": "215853",
+          "title": "Lotion",
+          "contentWarning": "explicit",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [
+            "explicit",
+            "exclamationIcon:671a23afcec5646906723a52",
+            "descriptionText:67370c8e13b92b0a60256675"
+          ],
+          "storageDir": "",
+          "durationMs": 237730,
+          "fileSize": 0,
+          "r128": {
+            "i": -7.26,
+            "tp": 0.96
+          },
+          "fade": {
+            "inStart": 0,
+            "inStop": 2.2,
+            "outStart": 236.2,
+            "outStop": 237.7
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 7
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": false,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": true,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215844",
+          "realId": "215844",
+          "title": "Dai the Flu",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [],
+          "storageDir": "",
+          "durationMs": 276570,
+          "fileSize": 0,
+          "r128": {
+            "i": -7.93,
+            "tp": 0.99
+          },
+          "fade": {
+            "inStart": 0,
+            "inStop": 1.5,
+            "outStart": 271.4,
+            "outStop": 276.4
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 8
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": false,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": true,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215851",
+          "realId": "215851",
+          "title": "Headup",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [],
+          "storageDir": "",
+          "durationMs": 312960,
+          "fileSize": 0,
+          "r128": {
+            "i": -9.09,
+            "tp": 0.79
+          },
+          "fade": {
+            "inStart": 0,
+            "inStop": 1.5,
+            "outStart": 304.7,
+            "outStop": 309.7
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 9
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": false,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": true,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN",
+          "specialAudioResources": [
+            "smart_preview"
+          ]
+        },
+        {
+          "id": "215849",
+          "realId": "215849",
+          "title": "MX",
+          "contentWarning": "explicit",
+          "major": {
+            "id": 0,
+            "name": "-"
+          },
+          "available": true,
+          "availableForPremiumUsers": true,
+          "availableFullWithoutPermission": false,
+          "availableForOptions": [
+            "bookmate"
+          ],
+          "disclaimers": [
+            "explicit",
+            "exclamationIcon:671a23afcec5646906723a52",
+            "descriptionText:67370c8e13b92b0a60256675"
+          ],
+          "storageDir": "",
+          "durationMs": 2238730,
+          "fileSize": 0,
+          "r128": {
+            "i": -8.55,
+            "tp": 0.76
+          },
+          "fade": {
+            "inStart": 0,
+            "inStop": 1.5,
+            "outStart": 2237.2,
+            "outStop": 2238.7
+          },
+          "previewDurationMs": 30000,
+          "artists": [
+            {
+              "id": 48770,
+              "name": "Deftones",
+              "various": false,
+              "composer": false,
+              "available": true,
+              "cover": {
+                "type": "from-artist-photos",
+                "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                "prefix": "9c0574a5.p.48770/"
+              },
+              "genres": [],
+              "disclaimers": []
+            }
+          ],
+          "albums": [
+            {
+              "id": 22012,
+              "title": "Around the Fur",
+              "metaType": "music",
+              "contentWarning": "explicit",
+              "year": 1997,
+              "releaseDate": "1997-10-27T00:00:00+03:00",
+              "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "cover": {
+                "uri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%"
+              },
+              "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+              "genre": "alternativemetal",
+              "trackCount": 10,
+              "likesCount": 30551,
+              "recent": false,
+              "veryImportant": false,
+              "artists": [
+                {
+                  "id": 48770,
+                  "name": "Deftones",
+                  "various": false,
+                  "composer": false,
+                  "available": true,
+                  "cover": {
+                    "type": "from-artist-photos",
+                    "uri": "avatars.yandex.net/get-music-content/3226792/9c0574a5.p.48770/%%",
+                    "prefix": "9c0574a5.p.48770/"
+                  },
+                  "genres": [],
+                  "disclaimers": []
+                }
+              ],
+              "labels": [
+                {
+                  "id": 445619,
+                  "name": "Maverick Recording Company"
+                }
+              ],
+              "available": true,
+              "availableForPremiumUsers": true,
+              "availableForOptions": [
+                "bookmate"
+              ],
+              "availableForMobile": true,
+              "availablePartially": false,
+              "bests": [215846, 215845],
+              "disclaimers": [
+                "explicit",
+                "exclamationIcon:671a23afcec5646906723a52",
+                "descriptionText:67370c8e13b92b0a60256675"
+              ],
+              "hasTrailer": false,
+              "trackPosition": {
+                "volume": 1,
+                "index": 10
+              }
+            }
+          ],
+          "coverUri": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "derivedColors": {
+            "average": "#272828",
+            "waveText": "#e0e0e0",
+            "miniPlayer": "#b6b8b8",
+            "accent": "#979a9a"
+          },
+          "ogImage": "avatars.yandex.net/get-music-content/38044/32242c3b.a.22012-1/%%",
+          "lyricsAvailable": true,
+          "best": false,
+          "type": "music",
+          "rememberPosition": false,
+          "trackSharingFlag": "COVER_ONLY",
+          "lyricsInfo": {
+            "hasAvailableSyncLyrics": true,
+            "hasAvailableTextLyrics": true
+          },
+          "trackSource": "OWN"
+        }
+      ]
+    ],
+    "pager": {
+      "page": 0,
+      "perPage": 10,
+      "total": 10
+    }
+  }
+}

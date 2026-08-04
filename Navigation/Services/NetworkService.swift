@@ -42,4 +42,64 @@ struct NetworkService {
             }
         }.resume()
     }
+    
+    static func request2_1(data: Data) -> [UserModel]? {
+        do {
+            if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+                var users: [UserModel] = []
+                for item in jsonObject {
+                    guard let userId = item["userId"] as? Int,
+                          let id = item["id"] as? Int,
+                          let title = item["title"] as? String,
+                          let completed = item["completed"] as? Bool else {
+                        continue
+                    }
+                    
+                    let user = UserModel(userId: userId, id: id, title: title, completed: completed)
+                    
+                    users.append(user)
+                }
+                return users
+            }
+        } catch {
+            print("failed parse, \(error.localizedDescription)")
+        }
+        return nil
+    }
+    
+    static func request2_2(completion: @escaping (Album?) -> Void){
+        guard let url = Bundle.main.url(forResource: "album", withExtension: "json") else {
+            print("file not found")
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let httpResponse = response as? HTTPURLResponse,
+               httpResponse.statusCode != 200 {
+                print("http error: \(httpResponse.statusCode)")
+                completion(nil)
+                return
+            }
+            
+            guard let data = data else {
+                print("no data")
+                completion(nil)
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let albumResponse = try decoder.decode(AlbumResponse.self, from: data)
+                let album = albumResponse.result
+                
+                print("success")
+                completion(album)
+            } catch {
+                print("decode error \(error.localizedDescription)")
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
 }
