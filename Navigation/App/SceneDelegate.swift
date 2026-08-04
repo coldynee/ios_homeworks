@@ -20,6 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: scene)
         
+        let appConfiguraion = AppConfiguration.allCases.randomElement() ?? .first
+        NetworkService.request(for: appConfiguraion)
+        
         let rootNavigationController = UINavigationController()
         rootNavigationController.isNavigationBarHidden = true
         
