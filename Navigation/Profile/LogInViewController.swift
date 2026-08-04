@@ -11,6 +11,7 @@ class LogInViewController: UIViewController {
 
     weak var coordinator: ProfileCoordinator?
     var loginDelegate: LoginViewControllerDelegate?
+    private var bruteForceService: BruteForceService?
     
     private var user: User?
     
@@ -79,6 +80,15 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
+    private lazy var bruteForceButton = CustomButton(
+        title: "Brute force",
+        titleColor: .systemRed,
+        backgroundColor: .systemBlue,
+        cornerRadius: 10,
+    ) { [weak self] in
+        self?.bruteForce()
+    }
+    
     private lazy var logInButton = CustomButton(
             title: "Log in",
             titleColor: .white,
@@ -89,6 +99,16 @@ class LogInViewController: UIViewController {
             self?.pushToProfile()
         }
         
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.isHidden = true
+        indicator.hidesWhenStopped = true
+        indicator.color = .systemBlue
+        indicator.backgroundColor = .white
+        indicator.layer.cornerRadius = 15
+        return indicator
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +128,7 @@ class LogInViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        bruteForceService?.cancel()
         removeKeyboardObservers()
     }
     
@@ -120,6 +140,9 @@ class LogInViewController: UIViewController {
         contentView.addSubview(loginTextField)
         contentView.addSubview(passwordTextField)
         contentView.addSubview(logInButton)
+        contentView.addSubview(bruteForceButton)
+        contentView.addSubview(activityIndicator)
+        activityIndicator.isHidden = true
         scrollView.addSubview(contentView)
         setupConstraints()
     }
@@ -163,9 +186,22 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
-            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
+            logInButton.topAnchor.constraint(equalTo: bruteForceButton.bottomAnchor, constant: 16),
+            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -80),
+            
+            //bruteForceButton
+            bruteForceButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            bruteForceButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            bruteForceButton.heightAnchor.constraint(equalToConstant: 50),
+            bruteForceButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            
+            
+            //activityIndicator
+            activityIndicator.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 30),
+            activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 30),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 30),
+            ])
     }
     private func setupTargets() {
         loginTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -237,6 +273,51 @@ class LogInViewController: UIViewController {
         let alert = UIAlertController(
             title: "Ошибка",
             message: "Неверный логин",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    private func bruteForce() {
+        bruteForceButton.isEnabled = false
+        bruteForceButton.setTitle("Finding...", for: .normal)
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        bruteForceService = BruteForceService(correctPassword: Checker.shared.getPassword())
+        bruteForceService?.start { [weak self] result in
+            if let result = result {
+                self?.showBruteForceResult(result)
+            } else {
+                self?.handleBruteForceError()
+            }
+        }
+    }
+    
+    private func showBruteForceResult(_ result: BruteForceResult) {
+        bruteForceButton.isEnabled = true
+        bruteForceButton.setTitle("Brute force", for: .normal)
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        passwordTextField.text = result.password
+        passwordTextField.isSecureTextEntry = false
+        
+        let alert = UIAlertController(
+            title: "Password found",
+            message: """
+            password = \(result.password),
+            duration = \(String(format: "%.2f", result.duration)) sec
+            """,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    private func handleBruteForceError() {
+        let alert = UIAlertController(
+            title: "Error",
+            message: "Password not found",
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "OK", style: .default))

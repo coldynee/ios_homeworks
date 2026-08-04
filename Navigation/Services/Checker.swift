@@ -14,10 +14,17 @@ class Checker {
     private init() {}
     
     private let validLogin = "nikita"
-    private let validPassword = "123"
+    private let validPassword = "10000"
     
     func check(login: String, password: String) -> Bool {
         return login == validLogin && password == validPassword
     }
     
+    func getLogin() -> String {
+        validLogin
+    }
+    
+    func getPassword() -> String {
+        validPassword
+    }
 }
