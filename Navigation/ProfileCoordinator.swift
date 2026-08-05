@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 
 class ProfileCoordinator: BaseCoordinator {
-    
+    private var loginInspector: LoginInspector?
+
     override func start() {
         let loginViewController = LogInViewController()
         loginViewController.coordinator = self
         
-        let factory = MyLoginFactory()
-        loginViewController.loginDelegate = factory.makeLoginInspector()
-        
+        loginViewController.configure(delegate: MyLoginFactory.shared.makeLoginInspector())
+                
         navigationController.viewControllers = [loginViewController]
     }
     
