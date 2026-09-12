@@ -10,9 +10,17 @@ import Foundation
 enum LoginError: Error {
     case emptyFields
     case invalidLogin
+    case invalidEmail
     case invalidPassword
     case userNotFound
     case unowned
+    case tooShort
+    case passwordsNotMatch
+    case loginAlreadyInUse
+    case weakPassword
+    case registrationFailed
+    case wrongPassword
+    case firebaseNotInitialized
     
     var errorDescription: String {
         switch self {
@@ -24,21 +32,41 @@ enum LoginError: Error {
             "Invalid password. It must be numeric and latin"
         case .userNotFound:
             "User by this login not found"
-        case .unowned:
+        case .unowned, .firebaseNotInitialized:
             "Unowned error, try again"
+        case .tooShort:
+            "Too short login/password"
+        case .passwordsNotMatch:
+            "Password not match"
+        case .loginAlreadyInUse:
+            "Email exists, try another"
+        case .weakPassword:
+            "Password too weak"
+        case .registrationFailed:
+            "Registration failed"
+        case .wrongPassword:
+            "Wrong password"
+        case .invalidEmail:
+            "Invalid email"
         }
     }
     
     var alertTitle: String {
         switch self {
-        case .emptyFields:
+        case .emptyFields, .registrationFailed:
             "Attention"
         case .invalidLogin, .invalidPassword:
             "Authorization error"
         case .userNotFound:
             "User not found"
-        case .unowned:
+        case .unowned, .firebaseNotInitialized:
             "Something wrong"
+        case .tooShort:
+            "Too short"
+        case .passwordsNotMatch, .weakPassword, .wrongPassword:
+            "Password error"
+        case .loginAlreadyInUse, .invalidEmail:
+            "Login error"
         }
     }
 }

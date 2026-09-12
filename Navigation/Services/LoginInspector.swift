@@ -7,9 +7,14 @@
 
 import Foundation
 
-struct LoginInspector: LoginViewControllerDelegate {
+class LoginInspector: LoginViewControllerDelegate {
     
-    func check(login: String, password: String) throws -> Bool {
-        return try Checker.shared.check(login: login, password: password)
+    func checkCredentials(login: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        CheckerService.shared.checkCredentials(login: login, password: password, completion: completion)
     }
+    
+    func signUp(login: String, password: String, passwordCheck: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        CheckerService.shared.signUp(login: login, password: password, passwordCheck: passwordCheck, completion: completion)
+    }
+    
 }

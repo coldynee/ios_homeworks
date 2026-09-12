@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
 
     weak var coordinator: ProfileCoordinator?
-    var loginDelegate: LoginViewControllerDelegate?
+    private weak var delegate: LoginViewControllerDelegate?
     
     private var user: User?
     
@@ -79,6 +80,13 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     private lazy var logInButton = CustomButton(
             title: "Log in",
             titleColor: .white,
@@ -86,7 +94,7 @@ class LogInViewController: UIViewController {
             cornerRadius: 10,
             
         ) { [weak self] in
-            self?.pushToProfile()
+            self?.handleLoginButtonTap()
         }
         
     
@@ -97,7 +105,6 @@ class LogInViewController: UIViewController {
         setupUI()
         setupTargets()
         setupHideKeyboardOnTap()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,10 +127,15 @@ class LogInViewController: UIViewController {
         contentView.addSubview(loginTextField)
         contentView.addSubview(passwordTextField)
         contentView.addSubview(logInButton)
+        contentView.addSubview(activityIndicator)
         scrollView.addSubview(contentView)
         setupConstraints()
     }
-
+    
+    func configure(delegate: LoginViewControllerDelegate) {
+        self.delegate = delegate
+    }
+    
     private func setupConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -164,7 +176,12 @@ class LogInViewController: UIViewController {
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
-            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            //activityIndicator
+            activityIndicator.centerXAnchor.constraint(equalTo: logInButton.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: logInButton.centerYAnchor)
+                        
         ])
     }
     private func setupTargets() {
@@ -176,9 +193,8 @@ class LogInViewController: UIViewController {
     @objc private func textFieldDidChange() {
         let loginTextFieldFilled = !(loginTextField.text?.isEmpty ?? true)
         let passwordTextFieldFilled = !(passwordTextField.text?.isEmpty ?? true)
-        
-        let shouldLoginButtonEnable = loginTextFieldFilled && passwordTextFieldFilled
-        updateButtonState(isEnabled: shouldLoginButtonEnable)
+
+        updateButtonState(isEnabled: loginTextFieldFilled && passwordTextFieldFilled)
     }
     
     @objc private func updateButtonState(isEnabled: Bool) {
@@ -188,31 +204,59 @@ class LogInViewController: UIViewController {
         }
     }
     
-    private func pushToProfile() {
-        
+    private func handleLoginButtonTap() {
         guard let login = loginTextField.text, !login.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
             showAlert(message: "Заполните все поля")
             return
         }
         
-        do {
-            let isValid = try loginDelegate?.check(login: login, password: password) ?? false
-            if isValid {
-                let userService = getUserService()
-                guard let user = userService.getUserInfo(by: login) else {
-                    throw LoginError.userNotFound
+        logInButton.isEnabled = false
+        logInButton.setTitle("", for: .normal)
+        activityIndicator.startAnimating()
+        
+        delegate?.checkCredentials(login: login, password: password) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
+                self?.logInButton.setTitle("Log in", for: .normal)
+                self?.logInButton.isEnabled = true
+                
+                switch result {
+                case .success:
+                    self?.navigateToProfile()
+                    
+                case .failure(let error):
+                    self?.handleError(error)
                 }
-                coordinator?.showProfile(with: user)
-            } else {
-                throw LoginError.invalidLogin
             }
-        } catch let error as LoginError {
-            showLoginError(error: error)
-        } catch {
+        }
+    }
+    
+    private func handleError(_ error: Error) {
+        activityIndicator.stopAnimating()
+        logInButton.setTitle("Log in", for: .normal)
+        logInButton.isEnabled = true
+        
+        let nsError = error as NSError
+        if let loginError = error as? LoginError {
+            showAlert(message: loginError.errorDescription)
+        } else if nsError.code == AuthErrorCode.wrongPassword.rawValue {
+            showAlert(message: "wrong password")
+        } else {
             showAlert(message: error.localizedDescription)
         }
+    }
         
+    private func navigateToProfile() {
+        if let currentUser = Auth.auth().currentUser {
+            let user = User(
+                login: currentUser.email ?? "",
+                fullName: currentUser.displayName ?? "User",
+                avatar: UIImage(named: "avatar") ?? UIImage(),
+                status: "My status"
+            )
+            coordinator?.showProfile(with: user)
+        }
     }
     
     private func showLoginError(error: LoginError) {
@@ -293,7 +337,7 @@ extension LogInViewController: UITextFieldDelegate {
         } else if textField == passwordTextField {
             textField.resignFirstResponder()
             if logInButton.isEnabled {
-                pushToProfile()
+                handleLoginButtonTap()
             }
         }
         return true

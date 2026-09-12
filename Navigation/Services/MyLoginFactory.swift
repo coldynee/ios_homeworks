@@ -7,10 +7,24 @@
 
 import Foundation
 
-struct MyLoginFactory: LoginFactory {
- 
-    func makeLoginInspector() -> LoginInspector {
-        LoginInspector()
+final class MyLoginFactory {
+    
+    static let shared = MyLoginFactory()
+    
+    private var cachedLoginInspector: LoginInspector?
+    
+    private init() {}
+    
+    func makeLoginInspector() -> LoginViewControllerDelegate {
+        if let existing = cachedLoginInspector {
+            return existing
+        }
+        let inspector = LoginInspector()
+        cachedLoginInspector = inspector
+        return inspector
     }
     
+    func reset() {
+        cachedLoginInspector = nil
+    }
 }
